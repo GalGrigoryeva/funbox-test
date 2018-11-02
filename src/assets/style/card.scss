@@ -1,0 +1,247 @@
+.card {
+  width: 320px;
+  min-height: 480px;
+  margin-bottom: 70px;
+  cursor: pointer;
+
+  &:hover {
+    .card__content {
+      border-color: $blue-light;
+    }
+
+    .card__amount {
+      background-color: $blue-light;
+    }
+
+    .card__action-btn {
+      color: #22A7E9;
+      border-color: #22A7E9;
+    }
+  }
+
+  &--active {
+    .card__content {
+      border-color: $pink;
+    }
+
+    .card__description {
+      span {
+        color: $pink;
+      }
+    }
+
+    .card__amount {
+      background-color: $pink;
+    }
+
+    &:hover {
+      .card__content {
+        border-color: $pink-light;
+      }
+
+      .card__amount {
+        background-color: $pink-light;
+      }
+    }
+  }
+
+  &--disabled {
+    pointer-events: none;
+
+    .card__content {
+      border-color: $gray;
+      background-image: linear-gradient(rgba(255, 255, 255, 0.5) 0, rgba(255, 255, 255, 0.5) 100%), url('assets/images/photo-cat.jpg');
+    }
+
+    .card__description,
+    .card__title,
+    .card__subtitle,
+    .card__feature {
+      color: $gray;
+
+      span,
+      b {
+        color: $gray;
+      }
+    }
+
+    .card__amount {
+      background-color: $gray;
+    }
+
+    .card__action-text {
+      color: $yellow;
+    }
+  }
+}
+
+.card__content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 14px;
+  padding: 15px 12px 206px 44px;
+  border-radius: 12px;
+  border: 4px solid $blue;
+  background-color: $white;
+  background-image: url('assets/images/photo-cat.jpg');
+  background-repeat: no-repeat;
+  background-position: -29px 181%;
+  overflow: hidden;
+  transition: all ease 0.2s;
+}
+
+.card__description {
+  margin-bottom: 5px;
+  font-family: 'Trebuchet MS', BlinkMacSystemFont, Ubuntu, Helvetica, Arial, sans-serif;;
+  font-size: 16px;
+  line-height: 19px;
+  color: $gray-font;
+}
+
+.card__title {
+  margin: 0;
+  font-family: 'Trebuchet MS', BlinkMacSystemFont, Ubuntu, Helvetica, Arial, sans-serif;;
+  font-size: 48px;
+  line-height: 56px;
+  font-weight: 700;
+}
+
+.card__subtitle {
+  margin: 0 0 15px;
+  font-family: 'Trebuchet MS', BlinkMacSystemFont, Ubuntu, Helvetica, Arial, sans-serif;;
+  font-size: 24px;
+  line-height: 28px;
+  font-weight: 700;
+}
+
+.card__feature {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 50px;
+  font-family: 'Trebuchet MS', BlinkMacSystemFont, Ubuntu, Helvetica, Arial, sans-serif;;
+  font-size: 14px;
+  line-height: 16px;
+
+  span {
+    color: $gray-font;
+  }
+
+  b {
+    color: $gray-font;
+  }
+}
+
+.card__amount {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-end;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: $blue;
+  transition: all ease 0.2s;
+}
+
+.card__amount-num {
+  font-family: 'Trebuchet MS', BlinkMacSystemFont, Ubuntu, Helvetica, Arial, sans-serif;;
+  font-size: 42px;
+  line-height: 42px;
+  color: $white;
+}
+
+.card__amount-unit {
+  font-size: 21px;
+  line-height: 22px;
+  color: $white;
+}
+
+.card__action-text {
+  font-family: 'Trebuchet MS', BlinkMacSystemFont, Ubuntu, Helvetica, Arial, sans-serif;;
+  font-size: 13px;
+  line-height: 15px;
+  text-align: center;
+  color: $white;
+}
+
+.card__action-btn {
+  @include text-btn;
+  position: relative;
+  display: inline-block;
+  font-size: 13px;
+  line-height: 15px;
+  font-weight: 700;
+  color: $blue;
+  border-bottom: 1px dashed $blue;
+
+  &::after {
+    position: absolute;
+    bottom: 0;
+    right: -4px;
+    content: '.';
+    transition: all ease 0.2s;
+  }
+}
+
+@media (min-width: 768px) {
+  .card {
+    margin: 0 40px 70px;
+  }
+}
+
+@media (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
+  .card__content {
+    background-image: url('assets/images/photo-cat@2x.jpg');
+    background-size: 368px 360px;
+  }
+}
+
+@supports (clip-path: polygon(0 40px, 40px 0, 100% 0, 100% 0, 100% 100%, 100% 100%, 0 100%, 0 100%)) {
+  .card {
+    &--disabled {
+      .card__content {
+        &::before {
+          background-color: $gray;
+        }
+      }
+    }
+
+    &--active {
+      .card__content {
+        &::before {
+          background-color: $pink;
+        }
+
+        &:hover {
+          &::before {
+            background-color: $pink-light;
+          }
+        }
+      }
+    }
+  }
+
+  .card__content {
+    border-radius: 0 12px 12px 12px;
+    clip-path: polygon(0 40px, 40px 0, 100% 0, 100% 0, 100% 100%, 100% 100%, 0 100%, 0 100%);
+
+    &::before {
+      @include pseudoelement;
+      left: -9px;
+      top: 15px;
+      width: 51px;
+      height: 4px;
+      background-color: $blue;
+      transform: rotate(-45deg);
+      transition: all ease 0.2s;
+    }
+  }
+}

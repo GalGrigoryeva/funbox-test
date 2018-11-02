@@ -1,0 +1,117 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: $black;
+}
+
+body {
+  background-color: $white;
+}
+
+ul {
+  list-style: none;
+}
+
+input,
+textarea,
+select {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+}
+
+input {
+  @include text-ellipsis();
+}
+
+button,
+a {
+  padding: 0;
+  text-decoration: none;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+a {
+  &:focus,
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+input,
+textarea,
+select {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+}
+
+input {
+  @include text-ellipsis();
+}
+
+input:-webkit-autofill {
+  color: $black !important;
+  -webkit-box-shadow: 0 0 0 30px $white inset !important;
+
+  &:hover {
+    -webkit-box-shadow: 0 0 0 30px $white inset !important;
+  }
+}
+
+input::-webkit-contacts-auto-fill-button {
+  visibility: hidden;
+  display: none !important;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+}
+
+::-webkit-credentials-auto-fill-button {
+  visibility: hidden;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+select:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 $black;
+}
+
+option:not(:checked) {
+  color: $black;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #F8F8F8;
+}
+
+.page__container {
+  display: flex;
+  flex-grow: 1;
+}
+
+html.with-modal {
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .page__container {
+    align-self: center;
+    width: 95%;
+    max-width: 1255px;
+  }
+}

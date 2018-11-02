@@ -1,0 +1,45 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 36px 0 27px;
+  background-color: $white;
+  background-image: linear-gradient(to bottom, $black 0%, rgba(0,0,0,0) 50%, $black 100%), url("assets/images/pattern.jpg");
+  background-repeat: no-repeat, repeat;
+}
+
+.page__title {
+  margin: 0 0 24px;
+  padding: 0 20px;
+  font-family: 'Exo 2.0', BlinkMacSystemFont, Ubuntu, Helvetica, Arial, sans-serif;
+  font-size: 36px;
+  line-height: 44px;
+  font-weight: 300;
+  text-align: center;
+  text-shadow: 0 1px 1px #000000;
+  color: $white;
+}
+
+.page__cards {
+  display: flex;
+  flex-direction: column;
+  //align-items: center;
+  align-content: stretch;
+  justify-content: center;
+}
+
+@media (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
+  .page {
+    background-image: linear-gradient(to bottom, $black 0%, rgba(0,0,0,0) 50%, $black 100%), url("assets/images/pattern@2x.jpg");
+    background-size: 100%, 70px 70px;
+  }
+}
+
+@media (min-width: 768px) {
+  .page__cards {
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+}

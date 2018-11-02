@@ -1,0 +1,104 @@
+@mixin placeholder {
+  ::-webkit-input-placeholder {@content}
+  :-moz-placeholder           {@content}
+  ::-moz-placeholder          {@content}
+  :-ms-input-placeholder      {@content}
+}
+
+@mixin pseudoelement {
+  position: absolute;
+  content: '';
+}
+
+@mixin btn() {
+  padding: 0;
+  text-align: center;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: all ease 0.2s;
+}
+
+@mixin round-btn() {
+  @include btn();
+  border-radius: 50%;
+}
+
+@mixin text-btn() {
+  height: auto;
+  padding: 0;
+  border-radius: 0;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all ease 0.2s;
+
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: transparent;
+  }
+}
+
+@mixin cross-btn() {
+  @include text-btn();
+  width: 15px;
+  height: 15px;
+  font-size: 0;
+
+  &::before,
+  &::after {
+    @include pseudoelement();
+    left: 7px;
+    top: 0;
+    width: 1px;
+    height: 15px;
+    background-color: #525252;
+    cursor: pointer;
+    transition: all ease 0.2s;
+  }
+
+  &::before {
+    transform: rotate(-45deg);
+  }
+
+  &::after {
+    transform: rotate(45deg);
+  }
+
+  &:hover {
+    &::before,
+    &::after {
+      background-color: #6b6c71;
+    }
+  }
+}
+
+@mixin arrow-down {
+  @include pseudoelement();
+  top: calc(50% - 7px);
+  width: 7px;
+  height: 7px;
+  border-bottom: 2px solid #030303;
+  border-left: 2px solid #030303;
+  transform: rotate(-45deg);
+}
+
+@mixin link () {
+  text-decoration: none;
+  cursor: pointer;
+  transition: all ease 0.2s;
+}
+
+@mixin bg-image {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+@mixin text-ellipsis () {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
